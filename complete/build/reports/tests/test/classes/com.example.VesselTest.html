@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - VesselTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>VesselTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.example.html">com.example</a> &gt; VesselTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">5</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">1.701s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">testCreateVessel()</td>
+<td class="success">0.079s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testDelete()</td>
+<td class="success">0.053s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGetVesselById()</td>
+<td class="success">1.507s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGetVesselsByColor()</td>
+<td class="success">0.032s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testUpdate()</td>
+<td class="success">0.030s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>13:41:23.177 [Test worker] INFO org.testcontainers.images.PullPolicy -- Image pull policy will be performed by: DefaultPullPolicy()
+13:41:23.189 [Test worker] INFO org.testcontainers.utility.ImageNameSubstitutor -- Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+13:41:23.209 [Test worker] INFO org.testcontainers.DockerClientFactory -- Testcontainers version: 1.20.4
+13:41:23.436 [Test worker] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+13:41:23.761 [Test worker] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Found Docker environment with local Unix socket (unix:///var/run/docker.sock)
+13:41:23.764 [Test worker] INFO org.testcontainers.DockerClientFactory -- Docker host IP address is localhost
+13:41:23.796 [Test worker] INFO org.testcontainers.DockerClientFactory -- Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 7837 MB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/itayeshkar/Library/Containers/com.docker.docker/Data/docker-cli.sock
+13:41:23.883 [Test worker] INFO tc.testcontainers/ryuk:0.11.0 -- Creating container for image: testcontainers/ryuk:0.11.0
+13:41:24.289 [Test worker] INFO tc.testcontainers/ryuk:0.11.0 -- Container testcontainers/ryuk:0.11.0 is starting: 70a831310db34ce6f43a993815daaca6e18113a92e32ee1f89caf7d2afd996bd
+13:41:24.601 [Test worker] INFO tc.testcontainers/ryuk:0.11.0 -- Container testcontainers/ryuk:0.11.0 started in PT0.718676S
+13:41:24.608 [Test worker] INFO org.testcontainers.utility.RyukResourceReaper -- Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+13:41:24.609 [Test worker] INFO org.testcontainers.DockerClientFactory -- Checking the system...
+13:41:24.610 [Test worker] INFO org.testcontainers.DockerClientFactory -- ✔︎ Docker server version should be at least 1.6.0
+13:41:24.613 [Test worker] INFO tc.postgres:14.5 -- Creating container for image: postgres:14.5
+13:41:24.673 [Test worker] INFO tc.postgres:14.5 -- Container postgres:14.5 is starting: 11f86cba3ad13edbe56faf8aaec6af6dd7c150900361edc0c3131cc79716c45b
+13:41:25.438 [Test worker] INFO tc.postgres:14.5 -- Container postgres:14.5 started in PT0.824649S
+13:41:25.445 [Test worker] INFO tc.postgres:14.5 -- Container is started (JDBC URL: jdbc:postgresql://localhost:59877/database?loggerLevel=OFF)
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.0)
+
+2025-01-20T13:41:26.219+02:00  INFO 83957 --- [    Test worker] com.example.VesselTest                   : Starting VesselTest using Java 17.0.13 with PID 83957 (started by itayeshkar in /Users/itayeshkar/Documents/GitHub/REST-API-TASK/complete)
+2025-01-20T13:41:26.227+02:00  INFO 83957 --- [    Test worker] com.example.VesselTest                   : The following 1 profile is active: &quot;dev&quot;
+2025-01-20T13:41:27.822+02:00  INFO 83957 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-20T13:41:27.870+02:00  INFO 83957 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 0 JPA repository interfaces.
+2025-01-20T13:41:28.984+02:00  INFO 83957 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2025-01-20T13:41:28.996+02:00  INFO 83957 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-20T13:41:28.996+02:00  INFO 83957 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.24]
+2025-01-20T13:41:29.070+02:00  INFO 83957 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-20T13:41:29.072+02:00  INFO 83957 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2824 ms
+2025-01-20T13:41:29.515+02:00 DEBUG 83957 --- [    Test worker] o.s.w.f.ServerHttpObservationFilter      : Filter 'webMvcObservationFilter' configured for use
+2025-01-20T13:41:29.907+02:00  INFO 83957 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-20T13:41:29.960+02:00  INFO 83957 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-01-20T13:41:29.991+02:00  INFO 83957 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-20T13:41:30.325+02:00  INFO 83957 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-20T13:41:30.358+02:00  INFO 83957 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-20T13:41:30.458+02:00  INFO 83957 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1f3dafd4
+2025-01-20T13:41:30.460+02:00  INFO 83957 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-20T13:41:30.500+02:00  WARN 83957 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-01-20T13:41:30.885+02:00  INFO 83957 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-20T13:41:30.894+02:00  INFO 83957 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-20T13:41:31.180+02:00  WARN 83957 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-20T13:41:31.360+02:00 DEBUG 83957 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : 5 mappings in 'requestMappingHandlerMapping'
+2025-01-20T13:41:31.761+02:00 DEBUG 83957 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-01-20T13:41:31.840+02:00 DEBUG 83957 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-01-20T13:41:31.880+02:00 DEBUG 83957 --- [    Test worker] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-01-20T13:41:32.505+02:00  INFO 83957 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-01-20T13:41:32.634+02:00  INFO 83957 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 59889 (http) with context path '/'
+2025-01-20T13:41:32.673+02:00  INFO 83957 --- [    Test worker] com.example.VesselTest                   : Started VesselTest in 6.908 seconds (process running for 11.055)
+2025-01-20T13:41:33.719+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : HTTP POST http://localhost:59889/api
+2025-01-20T13:41:33.794+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2025-01-20T13:41:33.843+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Writing [com.example.springboot.CustomData.RequestDTO@6a4bd9e4] as &quot;application/json&quot;
+2025-01-20T13:41:33.907+02:00  INFO 83957 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-20T13:41:33.908+02:00  INFO 83957 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-20T13:41:33.909+02:00 DEBUG 83957 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-01-20T13:41:33.909+02:00 DEBUG 83957 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-01-20T13:41:33.909+02:00 DEBUG 83957 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-01-20T13:41:33.915+02:00 DEBUG 83957 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6b9b9cb9
+2025-01-20T13:41:33.915+02:00 DEBUG 83957 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@67748053
+2025-01-20T13:41:33.915+02:00 DEBUG 83957 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-01-20T13:41:33.915+02:00  INFO 83957 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2025-01-20T13:41:33.924+02:00 DEBUG 83957 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : POST &quot;/api&quot;, parameters={}
+2025-01-20T13:41:33.929+02:00 DEBUG 83957 --- [o-auto-1-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.springboot.RequestController#handelPost(RequestDTO)
+2025-01-20T13:41:34.010+02:00 DEBUG 83957 --- [o-auto-1-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read &quot;application/json;charset=UTF-8&quot; to [com.example.springboot.CustomData.RequestDTO@63145eff]
+2025-01-20T13:41:34.131+02:00 DEBUG 83957 --- [o-auto-1-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, application/*+json] and supported [application/json, application/*+json]
+2025-01-20T13:41:34.146+02:00 DEBUG 83957 --- [o-auto-1-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.example.springboot.CustomData.ResponseDTO@1dfc61f1]
+2025-01-20T13:41:34.170+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Response 200 OK
+2025-01-20T13:41:34.173+02:00 DEBUG 83957 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-01-20T13:41:34.183+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Reading to [com.example.springboot.CustomData.ResponseDTO&lt;?&gt;]
+Serialized request: {&quot;dataType&quot;:&quot;com.example.springboot.CustomData.Vessel&quot;,&quot;message&quot;:&quot;VESSEL FOUND&quot;,&quot;data&quot;:{&quot;@class&quot;:&quot;com.example.springboot.CustomData.Vessel&quot;,&quot;id&quot;:&quot;32c145f4-4898-400e-af9c-f50f4aeab512&quot;,&quot;type&quot;:&quot;Cargo&quot;,&quot;color&quot;:&quot;Red&quot;}}
+2025-01-20T13:41:34.272+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : HTTP POST http://localhost:59889/api
+2025-01-20T13:41:34.276+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2025-01-20T13:41:34.276+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Writing [com.example.springboot.CustomData.RequestDTO@f507d33] as &quot;application/json&quot;
+2025-01-20T13:41:34.281+02:00 DEBUG 83957 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : POST &quot;/api&quot;, parameters={}
+2025-01-20T13:41:34.282+02:00 DEBUG 83957 --- [o-auto-1-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.springboot.RequestController#handelPost(RequestDTO)
+2025-01-20T13:41:34.284+02:00 DEBUG 83957 --- [o-auto-1-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read &quot;application/json;charset=UTF-8&quot; to [com.example.springboot.CustomData.RequestDTO@43748ca5]
+2025-01-20T13:41:34.294+02:00 DEBUG 83957 --- [o-auto-1-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, application/*+json] and supported [application/json, application/*+json]
+2025-01-20T13:41:34.294+02:00 DEBUG 83957 --- [o-auto-1-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.example.springboot.CustomData.ResponseDTO@a97496f]
+2025-01-20T13:41:34.295+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Response 201 CREATED
+2025-01-20T13:41:34.295+02:00 DEBUG 83957 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 201 CREATED
+2025-01-20T13:41:34.296+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Reading to [com.example.springboot.CustomData.ResponseDTO&lt;?&gt;]
+Serialized request: {&quot;dataType&quot;:&quot;com.example.springboot.CustomData.Vessel&quot;,&quot;message&quot;:&quot;ACTION COMPLETED&quot;,&quot;data&quot;:{&quot;@class&quot;:&quot;com.example.springboot.CustomData.Vessel&quot;,&quot;id&quot;:&quot;0e480d72-2841-417a-bcfb-7903487646c1&quot;,&quot;type&quot;:&quot;Cargo&quot;,&quot;color&quot;:&quot;Red&quot;}}
+2025-01-20T13:41:34.314+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : HTTP POST http://localhost:59889/api
+2025-01-20T13:41:34.315+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2025-01-20T13:41:34.316+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Writing [com.example.springboot.CustomData.RequestDTO@62d10834] as &quot;application/json&quot;
+2025-01-20T13:41:34.318+02:00 DEBUG 83957 --- [o-auto-1-exec-3] o.s.web.servlet.DispatcherServlet        : POST &quot;/api&quot;, parameters={}
+2025-01-20T13:41:34.319+02:00 DEBUG 83957 --- [o-auto-1-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.springboot.RequestController#handelPost(RequestDTO)
+2025-01-20T13:41:34.320+02:00 DEBUG 83957 --- [o-auto-1-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Read &quot;application/json;charset=UTF-8&quot; to [com.example.springboot.CustomData.RequestDTO@4166c245]
+2025-01-20T13:41:34.323+02:00 DEBUG 83957 --- [o-auto-1-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, application/*+json] and supported [application/json, application/*+json]
+2025-01-20T13:41:34.324+02:00 DEBUG 83957 --- [o-auto-1-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.example.springboot.CustomData.ResponseDTO@45595eb1]
+2025-01-20T13:41:34.325+02:00 DEBUG 83957 --- [o-auto-1-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-01-20T13:41:34.325+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Response 200 OK
+2025-01-20T13:41:34.328+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Reading to [com.example.springboot.CustomData.ResponseDTO&lt;?&gt;]
+Serialized request: {&quot;dataType&quot;:&quot;com.example.springboot.CustomData.Vessel&quot;,&quot;message&quot;:&quot;VESSEL FOUND&quot;,&quot;data&quot;:{&quot;@class&quot;:&quot;com.example.springboot.CustomData.Vessel&quot;,&quot;id&quot;:&quot;0e480d72-2841-417a-bcfb-7903487646c1&quot;,&quot;type&quot;:&quot;Cargo&quot;,&quot;color&quot;:&quot;Red&quot;}}
+2025-01-20T13:41:34.352+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : HTTP POST http://localhost:59889/api
+2025-01-20T13:41:34.353+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2025-01-20T13:41:34.354+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Writing [com.example.springboot.CustomData.RequestDTO@1440a166] as &quot;application/json&quot;
+2025-01-20T13:41:34.357+02:00 DEBUG 83957 --- [o-auto-1-exec-4] o.s.web.servlet.DispatcherServlet        : POST &quot;/api&quot;, parameters={}
+2025-01-20T13:41:34.357+02:00 DEBUG 83957 --- [o-auto-1-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.springboot.RequestController#handelPost(RequestDTO)
+2025-01-20T13:41:34.358+02:00 DEBUG 83957 --- [o-auto-1-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Read &quot;application/json;charset=UTF-8&quot; to [com.example.springboot.CustomData.RequestDTO@3dcafb05]
+2025-01-20T13:41:34.364+02:00 DEBUG 83957 --- [o-auto-1-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, application/*+json] and supported [application/json, application/*+json]
+2025-01-20T13:41:34.364+02:00 DEBUG 83957 --- [o-auto-1-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.example.springboot.CustomData.ResponseDTO@39f56864]
+2025-01-20T13:41:34.366+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Response 200 OK
+2025-01-20T13:41:34.366+02:00 DEBUG 83957 --- [o-auto-1-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-01-20T13:41:34.367+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Reading to [com.example.springboot.CustomData.ResponseDTO&lt;?&gt;]
+Serialized request: {&quot;dataType&quot;:&quot;java.util.ArrayList&quot;,&quot;message&quot;:&quot;VESSEL'S FOUND&quot;,&quot;data&quot;:[&quot;java.util.ArrayList&quot;,[{&quot;id&quot;:&quot;bb39cc00-eff8-4d8a-b2c7-122f31e20a50&quot;,&quot;type&quot;:&quot;Passenger&quot;,&quot;color&quot;:&quot;Blue&quot;},{&quot;id&quot;:&quot;a8392946-b34f-41e8-b1bf-82cb9c11aacd&quot;,&quot;type&quot;:&quot;Military&quot;,&quot;color&quot;:&quot;Blue&quot;}]]}
+2025-01-20T13:41:34.383+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : HTTP DELETE http://localhost:59889/api
+2025-01-20T13:41:34.384+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2025-01-20T13:41:34.385+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Writing [com.example.springboot.CustomData.RequestDTO@5a429813] as &quot;application/json&quot;
+2025-01-20T13:41:34.386+02:00 DEBUG 83957 --- [o-auto-1-exec-5] o.s.web.servlet.DispatcherServlet        : DELETE &quot;/api&quot;, parameters={}
+2025-01-20T13:41:34.388+02:00 DEBUG 83957 --- [o-auto-1-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.springboot.RequestController#handelDelete(RequestDTO)
+2025-01-20T13:41:34.391+02:00 DEBUG 83957 --- [o-auto-1-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Read &quot;application/json;charset=UTF-8&quot; to [com.example.springboot.CustomData.RequestDTO@490ee1c2]
+com.example.springboot.CustomData.RequestDTO@490ee1c2
+2025-01-20T13:41:34.397+02:00 DEBUG 83957 --- [o-auto-1-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, application/*+json] and supported [application/json, application/*+json]
+2025-01-20T13:41:34.398+02:00 DEBUG 83957 --- [o-auto-1-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.example.springboot.CustomData.ResponseDTO@4d316c3b]
+2025-01-20T13:41:34.399+02:00 DEBUG 83957 --- [o-auto-1-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-01-20T13:41:34.399+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Response 200 OK
+2025-01-20T13:41:34.401+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Reading to [com.example.springboot.CustomData.ResponseDTO&lt;?&gt;]
+Serialized request: {&quot;dataType&quot;:&quot;com.example.springboot.CustomData.Vessel&quot;,&quot;message&quot;:&quot;ACTION COMPLETED&quot;,&quot;data&quot;:{&quot;@class&quot;:&quot;com.example.springboot.CustomData.Vessel&quot;,&quot;id&quot;:&quot;bb39cc00-eff8-4d8a-b2c7-122f31e20a50&quot;,&quot;type&quot;:&quot;&quot;,&quot;color&quot;:&quot;&quot;}}
+2025-01-20T13:41:34.411+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : HTTP POST http://localhost:59889/api
+2025-01-20T13:41:34.412+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2025-01-20T13:41:34.412+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Writing [com.example.springboot.CustomData.RequestDTO@26ab3c1b] as &quot;application/json&quot;
+2025-01-20T13:41:34.415+02:00 DEBUG 83957 --- [o-auto-1-exec-6] o.s.web.servlet.DispatcherServlet        : POST &quot;/api&quot;, parameters={}
+2025-01-20T13:41:34.415+02:00 DEBUG 83957 --- [o-auto-1-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.springboot.RequestController#handelPost(RequestDTO)
+2025-01-20T13:41:34.417+02:00 DEBUG 83957 --- [o-auto-1-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Read &quot;application/json;charset=UTF-8&quot; to [com.example.springboot.CustomData.RequestDTO@51a13d7c]
+2025-01-20T13:41:34.419+02:00 DEBUG 83957 --- [o-auto-1-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, application/*+json] and supported [application/json, application/*+json]
+2025-01-20T13:41:34.420+02:00 DEBUG 83957 --- [o-auto-1-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.example.springboot.CustomData.ResponseDTO@109c3747]
+2025-01-20T13:41:34.421+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Response 200 OK
+2025-01-20T13:41:34.421+02:00 DEBUG 83957 --- [o-auto-1-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-01-20T13:41:34.422+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Reading to [com.example.springboot.CustomData.ResponseDTO&lt;?&gt;]
+Serialized request: {&quot;dataType&quot;:&quot;java.lang.String&quot;,&quot;message&quot;:&quot;NO VESSEL FOUND&quot;,&quot;data&quot;:&quot;NONE&quot;}
+2025-01-20T13:41:34.437+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : HTTP PUT http://localhost:59889/api
+2025-01-20T13:41:34.438+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2025-01-20T13:41:34.438+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Writing [com.example.springboot.CustomData.RequestDTO@55a46bf3] as &quot;application/json&quot;
+2025-01-20T13:41:34.441+02:00 DEBUG 83957 --- [o-auto-1-exec-7] o.s.web.servlet.DispatcherServlet        : PUT &quot;/api&quot;, parameters={}
+2025-01-20T13:41:34.442+02:00 DEBUG 83957 --- [o-auto-1-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.springboot.RequestController#handelPut(RequestDTO)
+2025-01-20T13:41:34.443+02:00 DEBUG 83957 --- [o-auto-1-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Read &quot;application/json;charset=UTF-8&quot; to [com.example.springboot.CustomData.RequestDTO@405186d3]
+2025-01-20T13:41:34.447+02:00 DEBUG 83957 --- [o-auto-1-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, application/*+json] and supported [application/json, application/*+json]
+2025-01-20T13:41:34.448+02:00 DEBUG 83957 --- [o-auto-1-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.example.springboot.CustomData.ResponseDTO@446e1a01]
+2025-01-20T13:41:34.449+02:00 DEBUG 83957 --- [o-auto-1-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-01-20T13:41:34.449+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Response 200 OK
+2025-01-20T13:41:34.449+02:00 DEBUG 83957 --- [    Test worker] o.s.web.client.RestTemplate              : Reading to [com.example.springboot.CustomData.ResponseDTO&lt;?&gt;]
+Serialized request: {&quot;dataType&quot;:&quot;com.example.springboot.CustomData.Vessel&quot;,&quot;message&quot;:&quot;ACTION COMPLETED&quot;,&quot;data&quot;:{&quot;@class&quot;:&quot;com.example.springboot.CustomData.Vessel&quot;,&quot;id&quot;:&quot;a8392946-b34f-41e8-b1bf-82cb9c11aacd&quot;,&quot;type&quot;:&quot;Tanker&quot;,&quot;color&quot;:&quot;Yellow&quot;}}
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.3</a> at 20 Jan 2025, 13:41:36</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+plugins {
+    id 'org.springframework.boot' version '3.3.0'
+    id 'java'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot Actuator
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // Spring Boot Web (for building RESTful APIs)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // PostgreSQL JDBC Driver
+    implementation 'org.postgresql:postgresql'
+
+    // Spring Data JPA (for ORM)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'javax.persistence:javax.persistence-api:2.2'
+
+    // Test dependencies
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.0'
+
+    // Testcontainers dependencies
+    testImplementation 'org.testcontainers:postgresql:1.20.4'       // PostgreSQL Testcontainers module
+    testImplementation 'org.testcontainers:testcontainers:1.20.4'   // Core Testcontainers library
+    testImplementation 'org.testcontainers:junit-jupiter:1.20.4'    // JUnit 5 integration for Testcontainers
+}
+
+test {
+    useJUnitPlatform()  // Ensure JUnit 5 is used for tests
+}
