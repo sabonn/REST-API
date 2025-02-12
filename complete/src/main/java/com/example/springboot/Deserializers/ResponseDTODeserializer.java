@@ -20,9 +20,8 @@ public class ResponseDTODeserializer extends JsonDeserializer<ResponseDTO<?>> {
 
     @Override
     public ResponseDTO<?> deserialize(
-        JsonParser p,
-        DeserializationContext ctxt
-    ) throws IOException {
+            JsonParser p,
+            DeserializationContext ctxt) throws IOException {
         JsonNode node = p.getCodec().readTree(p);
 
         String message = node.get("message").asText();
@@ -39,10 +38,9 @@ public class ResponseDTODeserializer extends JsonDeserializer<ResponseDTO<?>> {
                 JsonNode vesselListNode = dataNode.get(1);
                 for (JsonNode vesselNode : vesselListNode) {
                     Vessel vessel = new Vessel(
-                        UUID.fromString(vesselNode.get("id").asText()),
-                        vesselNode.get("type").asText(),
-                        vesselNode.get("color").asText()
-                    );
+                            UUID.fromString(vesselNode.get("id").asText()),
+                            vesselNode.get("type").asText(),
+                            vesselNode.get("color").asText());
                     vesselList.add(vessel);
                 }
                 data = vesselList;

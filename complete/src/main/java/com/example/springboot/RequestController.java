@@ -24,7 +24,8 @@ public class RequestController {
 
     private final VesselRepository vesselRepository;
 
-    // Constructor injection for the vessel repository(handels interaction with the DB)
+    // Constructor injection for the vessel repository(handels interaction with the
+    // DB)
     public RequestController(VesselRepository vesselRepository) {
         this.vesselRepository = vesselRepository;
     }
@@ -37,21 +38,19 @@ public class RequestController {
      */
     @PostMapping
     public ResponseEntity<ResponseDTO<?>> handelPost(
-        @RequestBody RequestDTO<?> req
-    ) {
+            @RequestBody RequestDTO<?> req) {
         // Define accepted request types for this handler
         RequestType[] acceptedRequests = {
-            RequestType.CREATE,
-            RequestType.GETBYID,
-            RequestType.GETBYCOLOR,
+                RequestType.CREATE,
+                RequestType.GETBYID,
+                RequestType.GETBYCOLOR,
         };
 
         // Check if the incoming request is valid
         boolean response = checkCorrectRequest(
-            req.getRequestType(),
-            acceptedRequests,
-            req.getDataType()
-        );
+                req.getRequestType(),
+                acceptedRequests,
+                req.getDataType());
 
         if (response) {
             switch (req.getRequestType()) {
@@ -61,10 +60,9 @@ public class RequestController {
                     UUID id = UUID.randomUUID();
                     Map<String, Object> params = Map.of("id", id);
                     ResponseEntity<ResponseDTO<?>> res = queryData(
-                        params,
-                        RequestType.GETBYID,
-                        false
-                    );
+                            params,
+                            RequestType.GETBYID,
+                            false);
                     while (res.getBody().getMessage() == "VESSEL FOUND") {
                         id = UUID.randomUUID();
                         params = Map.of("id", id);
@@ -84,15 +82,15 @@ public class RequestController {
                     Map<String, Object> params = Map.of("color", color);
                     return queryData(params, RequestType.GETBYCOLOR, true);
                 }
-                default -> {} // No action for unused cases, but ready for future additions
+                default -> {
+                } // No action for unused cases, but ready for future additions
             }
         }
 
         // Return an error if the request type or data is invalid
         ResponseDTO<String> responseDTO = new ResponseDTO<String>(
-            "INCORRECT REQUEST",
-            "could be problem with either RequestType or the Data that you send"
-        );
+                "INCORRECT REQUEST",
+                "could be problem with either RequestType or the Data that you send");
         return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 
@@ -104,17 +102,15 @@ public class RequestController {
      */
     @PutMapping
     public ResponseEntity<ResponseDTO<?>> handelPut(
-        @RequestBody RequestDTO<?> req
-    ) {
+            @RequestBody RequestDTO<?> req) {
         // Define accepted request types for this handler
         RequestType[] acceptedRequests = { RequestType.UPDATE };
 
         // Check if the incoming request is valid
         boolean response = checkCorrectRequest(
-            req.getRequestType(),
-            acceptedRequests,
-            req.getDataType()
-        );
+                req.getRequestType(),
+                acceptedRequests,
+                req.getDataType());
 
         if (response) {
             switch (req.getRequestType()) {
@@ -124,24 +120,23 @@ public class RequestController {
                     Map<String, Object> params = new HashMap<>();
                     params.put("id", vessel.getId());
                     ResponseEntity<ResponseDTO<?>> res = queryData(
-                        params,
-                        RequestType.GETBYID,
-                        false
-                    );
-                    if (
-                        res.getBody().getData().getClass() == Vessel.class
-                    ) return updateData(vessel, RequestType.UPDATE, false);
-                    else return res;
+                            params,
+                            RequestType.GETBYID,
+                            false);
+                    if (res.getBody().getData().getClass() == Vessel.class)
+                        return updateData(vessel, RequestType.UPDATE, false);
+                    else
+                        return res;
                 }
-                default -> {} // No action for unused cases, but ready for future additions
+                default -> {
+                } // No action for unused cases, but ready for future additions
             }
         }
 
         // Return an error if the request type or data is invalid
         ResponseDTO<String> responseDTO = new ResponseDTO<String>(
-            "INCORRECT REQUEST",
-            "could be problem with either RequestType or the Data that you send"
-        );
+                "INCORRECT REQUEST",
+                "could be problem with either RequestType or the Data that you send");
         return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 
@@ -153,17 +148,15 @@ public class RequestController {
      */
     @DeleteMapping
     public ResponseEntity<ResponseDTO<?>> handelDelete(
-        @RequestBody RequestDTO<?> req
-    ) {
+            @RequestBody RequestDTO<?> req) {
         // Define accepted request types for this handler
         RequestType[] acceptedRequests = { RequestType.DELETE };
         System.out.println(req);
         // Check if the incoming request is valid
         boolean response = checkCorrectRequest(
-            req.getRequestType(),
-            acceptedRequests,
-            req.getDataType()
-        );
+                req.getRequestType(),
+                acceptedRequests,
+                req.getDataType());
 
         if (response) {
             switch (req.getRequestType()) {
@@ -174,24 +167,23 @@ public class RequestController {
                     Map<String, Object> params = new HashMap<>();
                     params.put("id", vessel.getId());
                     ResponseEntity<ResponseDTO<?>> res = queryData(
-                        params,
-                        RequestType.GETBYID,
-                        false
-                    );
-                    if (
-                        res.getBody().getData().getClass() == Vessel.class
-                    ) return updateData(vessel, RequestType.DELETE, false);
-                    else return res;
+                            params,
+                            RequestType.GETBYID,
+                            false);
+                    if (res.getBody().getData().getClass() == Vessel.class)
+                        return updateData(vessel, RequestType.DELETE, false);
+                    else
+                        return res;
                 }
-                default -> {} // No action for unused cases, but ready for future additions
+                default -> {
+                } // No action for unused cases, but ready for future additions
             }
         }
 
         // Return an error if the request type or data is invalid
         ResponseDTO<String> responseDTO = new ResponseDTO<String>(
-            "INCORRECT REQUEST",
-            "could be problem with either RequestType or the Data that you send"
-        );
+                "INCORRECT REQUEST",
+                "could be problem with either RequestType or the Data that you send");
         return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 
@@ -200,20 +192,16 @@ public class RequestController {
      *
      * @param typeOfRequest The type of request being processed.
      * @param expectedTypes The list of accepted request types.
-     * @param workClass The expected class type for the data.
+     * @param workClass     The expected class type for the data.
      * @return True if the request type and data type match; false otherwise.
      */
     private boolean checkCorrectRequest(
-        RequestType typeOfRequest,
-        RequestType[] expectedTypes,
-        Class<?> workClass
-    ) {
+            RequestType typeOfRequest,
+            RequestType[] expectedTypes,
+            Class<?> workClass) {
         for (RequestType expectedType : expectedTypes) {
-            if (
-                expectedType == typeOfRequest &&
-                typeOfRequest.getWorkClassType() ==
-                expectedType.getWorkClassType()
-            ) {
+            if (expectedType == typeOfRequest &&
+                    typeOfRequest.getWorkClassType() == expectedType.getWorkClassType()) {
                 return true;
             }
         }
@@ -224,85 +212,73 @@ public class RequestController {
      * Updates the vessel data in the repository.
      *
      * @param vessel The vessel data to be updated.
-     * @param type The request type (CREATE, UPDATE, DELETE).
-     * @param create Flag indicating whether the operation is for creating a new record.
+     * @param type   The request type (CREATE, UPDATE, DELETE).
+     * @param create Flag indicating whether the operation is for creating a new
+     *               record.
      * @return ResponseEntity with the result of the update operation.
      */
     private ResponseEntity<ResponseDTO<?>> updateData(
-        Vessel vessel,
-        RequestType type,
-        boolean create
-    ) {
+            Vessel vessel,
+            RequestType type,
+            boolean create) {
         try {
             vessel = vesselRepository.updateSql(
-                vessel,
-                type.getRequestTypeSql()
-            );
+                    vessel,
+                    type.getRequestTypeSql());
             ResponseDTO<Vessel> responseDTO = new ResponseDTO<Vessel>(
-                "ACTION COMPLETED",
-                vessel
-            );
+                    "ACTION COMPLETED",
+                    vessel);
             return new ResponseEntity<>(
-                responseDTO,
-                create ? HttpStatus.CREATED : HttpStatus.OK
-            );
+                    responseDTO,
+                    create ? HttpStatus.CREATED : HttpStatus.OK);
         } catch (Error e) {
             ResponseDTO<String> responseDTO = new ResponseDTO<String>(
-                "FAILED ACTION",
-                e.toString()
-            );
+                    "FAILED ACTION",
+                    e.toString());
             return new ResponseEntity<>(
-                responseDTO,
-                HttpStatus.INTERNAL_SERVER_ERROR
-            );
+                    responseDTO,
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     /**
      * Queries the repository for vessels based on the provided parameters.
      *
-     * @param params The query parameters to filter vessels.
-     * @param type The request type (GETBYID, GETBYCOLOR).
+     * @param params           The query parameters to filter vessels.
+     * @param type             The request type (GETBYID, GETBYCOLOR).
      * @param multipleEntities Flag indicating whether to return a list of vessels.
      * @return ResponseEntity with the found vessels or an error message.
      */
     private ResponseEntity<ResponseDTO<?>> queryData(
-        Map<String, Object> params,
-        RequestType type,
-        boolean multipleEntities
-    ) {
+            Map<String, Object> params,
+            RequestType type,
+            boolean multipleEntities) {
         try {
             List<Vessel> vessels = vesselRepository.getVesselByQuery(
-                params,
-                type.getRequestTypeSql()
-            );
+                    params,
+                    type.getRequestTypeSql());
             if (vessels == null) {
                 ResponseDTO<String> responseDTO = new ResponseDTO<>(
-                    "NO VESSEL FOUND",
-                    "NONE"
-                );
+                        "NO VESSEL FOUND",
+                        "NONE");
                 return new ResponseEntity<>(responseDTO, HttpStatus.OK);
             } else if (multipleEntities) {
                 ResponseDTO<List<Vessel>> responseDTO = new ResponseDTO<>(
-                    "VESSEL'S FOUND",
-                    vessels
-                );
+                        "VESSEL'S FOUND",
+                        vessels);
                 return new ResponseEntity<>(responseDTO, HttpStatus.OK);
             }
             ResponseDTO<Vessel> responseDTO = new ResponseDTO<>(
-                "VESSEL FOUND",
-                vessels.get(0)
-            );
+                    "VESSEL FOUND",
+                    vessels.get(0));
             return new ResponseEntity<>(responseDTO, HttpStatus.OK);
         } catch (Error e) {
             ResponseDTO<String> responseDTO = new ResponseDTO<String>(
-                "FAILED QUERY",
-                e.toString()
-            );
+                    "FAILED QUERY",
+                    e.toString());
             return new ResponseEntity<>(
-                responseDTO,
-                HttpStatus.INTERNAL_SERVER_ERROR
-            );
+                    responseDTO,
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
