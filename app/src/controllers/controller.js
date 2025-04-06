@@ -1,3 +1,4 @@
+const { dataDir } = require('@tauri-apps/api/path');
 const item = require('../models/item');
 
 class itemController {
@@ -22,13 +23,20 @@ class itemController {
     // Get item by ID
     static async getItemById(req, res) {
         try {
-            const id = parseInt(req.params.id);
-            const items = await item.queryDB('SELECT * FROM items WHERE id = $1', [id]);
-      
-            if (!items) {
+            const ids = req.params.id.split(',').map(id => parseInt(id))
+            if (ids.includes(NaN)) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Wrong characters in url'
+                });
+            }
+
+            const items = await item.queryDB('SELECT * FROM items WHERE id = ANY($1::int[])', [ids]);
+ 
+            if (!items.rows) {
                 return res.status(404).json({
                     success: false,
-                    message: `Item with id ${id} not found`
+                    message: `Item with id ${ids} not found`
                 });
             }
       
@@ -64,6 +72,58 @@ class itemController {
                 success: false,
                 message: 'Server error'
             });
+        }
+    }
+
+    // Update item by id
+    static async updateItemById(req, res) {
+        try {
+            const { title, subtitle, content, tags} = req.body;
+            const vettedDate = req.body.vettedDate || new Date()
+            const id = parseInt(req.params.id);
+            const update = await item.queryDB(
+                'UPDATE items SET title = $1, subtitle = $2, vetted_date = $3, content = $4, tags = $5 WHERE id = $6 RETURNING *',
+                [title, subtitle, vettedDate, content, tags, id]
+            );
+            console.log(update);
+            if (!update.rows) {
+                return res.status(404).json({
+                    success: false,
+                    message: 'Item not found'
+                });
+            }
+
+            res.status(200).json({
+                success: true,
+                data: update
+            });
+
+        } catch (error) {
+            console.error('Error in updateItemById:', error);
+        }
+    }
+
+    // Delete item by id
+    static async deleteItemById(req, res) {
+        try {
+            const id = parseInt(req.params.id);
+            const del = await item.queryDB(
+                'DELETE FROM items WHERE id = $1 RETURNING *',
+                [id]  
+            );
+            if (!del.rows) {
+                return res.status(404).json({
+                    success: false,
+                    message: 'Item not found'
+                });
+            }
+
+            res.status(200).json({
+                success: true,
+                data: del
+            });
+        } catch (error) {
+            console.error('Error in deleteItemById:', error);
         }
     }
 
