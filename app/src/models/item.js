@@ -25,8 +25,12 @@ class Item {
           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `;
+    const createGinIndexQuery = `
+      CREATE INDEX IF NOT EXISTS idx_items_tags ON items USING GIN (tags)
+    `;
     try {
       await db.query(query);
+      await db.query(createGinIndexQuery);
       console.log('Items table is ready');
     } catch (error) {
       console.error('Error creating items table:', error);
