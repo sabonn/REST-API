@@ -1,4 +1,5 @@
 const db = require('../config/db');
+const joi = require('joi');
 
 class Item {
   static async queryDB(query, params = []) {
