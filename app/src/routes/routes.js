@@ -8,10 +8,11 @@ router.get('/', itemController.getAllItems);
 router.post('/', itemController.createItem);
 
 // Id Route
-router.put('/id/:id', itemController.updateItemById);
-router.get('/id/:id', itemController.getItemById);
-router.delete('/id/:id', itemController.deleteItemById);
+router.put('/id', itemController.updateItemById);
+router.get('/id', itemController.getItemById);
+router.delete('/id', itemController.deleteItemById);
 
 // Tags Route
+router.get('/tags', itemController.getItemsByTags);
 
 module.exports = router;
