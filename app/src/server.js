@@ -31,8 +31,11 @@ app.get('/', (req, res) => {
         message: 'Welcome to the REST API with CRUD operations',
         endpoints: {
             getAllItems: 'GET /api/items',
-            getItemById: 'GET /api/items/:id',
-            createItem: 'POST /api/items'
+            getItemById: 'GET /api/items/id/:id',
+            createItem: 'POST /api/items',
+            getItemByTags: 'GET /api/items/tags/:tags',
+            updateItemById: 'PUT /api/items/id/:id',
+            deleteItemById: 'DELETE /api/items/id/:id'
         }
     });
 });

@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:14.15
+    environment:
+      POSTGRES_USER: my_user
+      POSTGRES_PASSWORD: my_password
+      POSTGRES_DB: database
+    ports:
+      - "5433:5432"  # Expose port 5433 on the host
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "my_user", "-d", "database"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+      start_period: 5s
+
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy  # Ensure the app starts after the db is healthy
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432  # Ensure this matches the external port
+      DB_USER: my_user
+      DB_PASSWORD: my_password
+      DB_NAME: database
