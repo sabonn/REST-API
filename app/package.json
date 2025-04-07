@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "node src/server.js",
-    "test": "jest"
+    "test": "jest",
+    "seed": "node tests/seed.js"
   },
   "dependencies": {
     "@faker-js/faker": "^9.6.0",

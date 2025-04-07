@@ -154,24 +154,25 @@ class itemController {
     // Delete item by id
     static async deleteItemById(req, res) {
         try {
-            let ids = req.query.id;
-
-            if (typeof ids === 'string') {
-                ids = [parseInt(ids)];
+            let id = req.query.id;
+            if (Array.isArray(id)) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'One id please'
+                });
             } else {
-                ids = ids.map(id => parseInt(id));
-            
-                if (ids.includes(NaN)) {
+                id = parseInt(id);
+                if (id === NaN) {
                     return res.status(400).json({
                         success: false,
-                        message: 'Invalid characters in URL'
-                    });
+                        message: 'Invalid Characters In Url'
+                    });       
                 }
             }
 
             const del = await item.queryDB(
-                'DELETE FROM items WHERE id = ANY($1::int[]) RETURNING *',
-                [ids]  
+                'DELETE FROM items WHERE id = $1 RETURNING *',
+                [id]  
             );
 
             if (del.length === 0) {

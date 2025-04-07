@@ -100,8 +100,10 @@ describe('Item API Advanced Tests', () => {
       ids.push(res.data.data[0].id);
     }
 
-    const deleteRes = await deleteItem(ids);
-    expect(deleteRes.status).toBe(204);
+    for (const id of ids) {
+      const deleteRes = await deleteItem(id);
+      expect(deleteRes.status).toBe(204);
+    }
 
     for (const id of ids) {
       try {
