@@ -40,16 +40,9 @@ Follow these steps to get the project up and running:
     DB_PASSWORD=your-db-password
     ```
 
-4. **Running the Application:**
+4. **Docker Environment:**
 
-    To run the application in development mode, use the following command:
-
-    ```bash
-    npm run dev
-    ```
-
-    The API will be available at `http://localhost:3000`.
-
+    Make sure you have docker installed, the entire project is Docker compatible.
 ---
 
 ## Tech Stack & Database
@@ -102,7 +95,7 @@ The seeding script generates random items using Faker.js and inserts them into t
 
 2. **Customizing Seeding Data:**
 
-    The seeding script is designed to generate random data. You can adjust the settings in the seeding script if needed.
+    The seeding script is designed to generate random data. You can adjust the settings in the seeding script if needed either in the script it self or in the `.env` file.
 
 ---
 
