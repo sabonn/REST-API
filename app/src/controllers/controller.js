@@ -69,6 +69,7 @@ class itemController {
         try {
             const { title, subtitle, content, tags } = req.body;
             const vettedDate = req.body.vettedDate || new Date();
+            const uniqueTags = [...new Set(tags)];
 
             if (!title || !subtitle || !content || !tags) {
                 return res.status(400).json({
@@ -79,7 +80,7 @@ class itemController {
 
             const newItem = await item.queryDB(
                 'INSERT INTO items (title, subtitle, vetted_date, content, tags) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-                [title, subtitle, vettedDate, content, tags]
+                [title, subtitle, vettedDate, content, uniqueTags]
             );
 
             res.status(201).json({
@@ -100,24 +101,34 @@ class itemController {
         try {
             const { title, subtitle, content, tags } = req.body;
             const vettedDate = req.body.vettedDate || new Date();
-            let ids = req.query.id;
-
-            if (typeof ids === 'string') {
-                ids = [parseInt(ids)];
+            const uniqueTags = [...new Set(tags)];
+            let id = req.query.id;
+            if (Array.isArray(id)) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'One id please'
+                });
             } else {
-                ids = ids.map(id => parseInt(id));
-            
-                if (ids.includes(NaN)) {
+                id = parseInt(id);
+                if (id === NaN) {
                     return res.status(400).json({
                         success: false,
-                        message: 'Invalid characters in URL'
-                    });
+                        message: 'Invalid Characters In Url'
+                    });       
                 }
             }
 
+            let updateItem = await item.queryDB('SELECT * FROM items WHERE id = $1', [id]);
+
+            updateItem.title = title ? title : updateItem.title;
+            updateItem.subtitle = subtitle ? subtitle : updateItem.subtitle;
+            updateItem.vettedDate = vettedDate ? vettedDate : updateItem.vettedDate;
+            updateItem.content = content ? content : updateItem.content;
+            updateItem.tags = uniqueTags ? uniqueTags : updateItem.tags;
+
             const update = await item.queryDB(
-                'UPDATE items SET title = $1, subtitle = $2, vetted_date = $3, content = $4, tags = $5 WHERE id = ANY($6::int[]) RETURNING *',
-                [title, subtitle, vettedDate, content, tags, ids]
+                'UPDATE items SET title = $1, subtitle = $2, vetted_date = $3, content = $4, tags = $5 WHERE id = $6 RETURNING *',
+                [updateItem.title, updateItem.subtitle, updateItem.vettedDate, updateItem.content, updateItem.tags, id]
             );
 
             if (update.length === 0) {
