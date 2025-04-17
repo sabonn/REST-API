@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const itemController = require('../controllers/controller');
-const { validate, updateItemSchema, createItemSchema }  = require('../validation/validation');
+const { validate, validateId, updateItemSchema, createItemSchema }  = require('../validation/validation');
 
 // Route definitions
 // Base Route
 router.get('/', itemController.getAllItems);
-router.post('/', validate(createItemSchema),itemController.createItem);
+router.post('/', validate(createItemSchema, "body"),itemController.createItem);
 
 // Id Route
-router.put('/id', validate(updateItemSchema),itemController.updateItemById);
-router.get('/id', itemController.getItemById);
-router.delete('/id', itemController.deleteItemById);
+router.put('/id', validate(validateId,"query"), validate(updateItemSchema, "body"), itemController.updateItemById);
+router.get('/id', validate(validateId,"query"), itemController.getItemById);
+router.delete('/id', validate(validateId,"query"), itemController.deleteItemById);
 
 // Tags Route
 router.get('/tags', itemController.getItemsByTags);

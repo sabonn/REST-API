@@ -16,9 +16,13 @@ const updateItemSchema = Joi.object({
   vettedDate: Joi.date().optional()
 });
 
-function validate(schema) {
+const validateId = Joi.object({
+  id: Joi.number().min(1).required()
+});
+
+function validate(schema, source) {
     return (req, res, next) => {
-      const { error } = schema.validate(req.body);
+      const { error } = schema.validate(req[source]);
       if (error) {
         return res.status(400).json({
             success: false,
@@ -32,5 +36,6 @@ function validate(schema) {
 module.exports = {
   createItemSchema,
   updateItemSchema,
+  validateId,
   validate
 };
