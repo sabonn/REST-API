@@ -4,7 +4,7 @@ class Item {
 
   // Item queries
   static getAllItemsQuery = 'SELECT * FROM items';
-  static getItemByIdQuery = 'SELECT * FROM items WHERE id = $1)';
+  static getItemByIdQuery = 'SELECT * FROM items WHERE id = $1';
   static createItemQuery = 'INSERT INTO items (title, subtitle, vetted_date, content, tags) VALUES ($1, $2, $3, $4, $5) RETURNING *';
   static updateItemByIdQuery = 'UPDATE items SET title = $1, subtitle = $2, vetted_date = $3, content = $4, tags = $5 WHERE id = $6 RETURNING *';
   static deleteItemByIdQuery = 'DELETE FROM items WHERE id = $1 RETURNING *';
