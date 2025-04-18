@@ -1,10 +1,21 @@
 const item = require('../models/item');
+const db = require('../config/db');
+
+const queryDB = async (query, params = []) => {
+    try {
+        const result = await db.query(query, params);
+        return result.rows;
+    } catch (error) {
+        console.log('Error in queryDB: ', error);
+        throw error;
+    }
+}
 
 class itemController {
     // Get all items
     static async getAllItems(req, res) {
         try {
-            const items = await item.queryDB('SELECT * FROM items');
+            const items = await queryDB('SELECT * FROM items');
             if (items.length === 0) {
                 return res.status(404).json({
                     success: false,
@@ -42,7 +53,7 @@ class itemController {
                 }
             }
 
-            const items = await item.queryDB('SELECT * FROM items WHERE id = ANY($1::int[])', [ids]);
+            const items = await queryDB('SELECT * FROM items WHERE id = ANY($1::int[])', [ids]);
 
             if (items.length === 0) {
                 return res.status(404).json({
@@ -78,7 +89,7 @@ class itemController {
                 });
             }
 
-            const newItem = await item.queryDB(
+            const newItem = await queryDB(
                 'INSERT INTO items (title, subtitle, vetted_date, content, tags) VALUES ($1, $2, $3, $4, $5) RETURNING *',
                 [title, subtitle, vettedDate, content, uniqueTags]
             );
@@ -118,7 +129,7 @@ class itemController {
                 }
             }
 
-            let updateItem = await item.queryDB('SELECT * FROM items WHERE id = $1', [id]);
+            let updateItem = await queryDB('SELECT * FROM items WHERE id = $1', [id]);
 
             updateItem.title = title ? title : updateItem.title;
             updateItem.subtitle = subtitle ? subtitle : updateItem.subtitle;
@@ -126,7 +137,7 @@ class itemController {
             updateItem.content = content ? content : updateItem.content;
             updateItem.tags = uniqueTags ? uniqueTags : updateItem.tags;
 
-            const update = await item.queryDB(
+            const update = await queryDB(
                 'UPDATE items SET title = $1, subtitle = $2, vetted_date = $3, content = $4, tags = $5 WHERE id = $6 RETURNING *',
                 [updateItem.title, updateItem.subtitle, updateItem.vettedDate, updateItem.content, updateItem.tags, id]
             );
@@ -170,7 +181,7 @@ class itemController {
                 }
             }
 
-            const del = await item.queryDB(
+            const del = await queryDB(
                 'DELETE FROM items WHERE id = $1 RETURNING *',
                 [id]  
             );
@@ -208,7 +219,7 @@ class itemController {
                 });
             }
 
-            const items = await item.queryDB(
+            const items = await queryDB(
                 'SELECT * FROM items WHERE tags @> $1',
                 [tags]
             );

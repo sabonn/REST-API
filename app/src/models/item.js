@@ -1,16 +1,7 @@
 const db = require('../config/db');
 const joi = require('joi');
 
-class Item {
-  static async queryDB(query, params = []) {
-    try {
-      const result = await db.query(query, params);
-      return result.rows;
-    } catch (error) {
-      console.log('Error in queryDB: ', error);
-      throw error;
-    }
-  }
+class Item { 
 
   // Only keep special logic here
   static async initTable() {
