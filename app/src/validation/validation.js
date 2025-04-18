@@ -17,7 +17,14 @@ const updateItemSchema = Joi.object({
 });
 
 const validateId = Joi.object({
-  id: Joi.number().min(1).required()
+  id: Joi.number().integer().min(1).required()
+});
+
+const validateTags = Joi.object({
+  tags: Joi.alternatives().try(
+    Joi.string(),
+    Joi.array().items(Joi.string())
+  ).required()
 });
 
 function validate(schema, source) {
@@ -37,5 +44,6 @@ module.exports = {
   createItemSchema,
   updateItemSchema,
   validateId,
+  validateTags,
   validate
 };

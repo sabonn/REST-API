@@ -1,21 +1,17 @@
-const item = require('../models/item');
 const db = require('../config/db');
+const item = require('../models/item');
 
-const queryDB = async (query, params = []) => {
-    try {
-        const result = await db.query(query, params);
-        return result.rows;
-    } catch (error) {
-        console.log('Error in queryDB: ', error);
-        throw error;
-    }
+const handleError = (res, err, origin = '') => {
+    console.error(`Error in ${origin}:`, err);
+    res.status(500).json({ success: false, message: 'Server error' });
 }
+
 
 class itemController {
     // Get all items
     static async getAllItems(req, res) {
         try {
-            const items = await queryDB('SELECT * FROM items');
+            const items = await db.queryDB(item.getAllItemsQuery);
             if (items.length === 0) {
                 return res.status(404).json({
                     success: false,
@@ -28,37 +24,21 @@ class itemController {
                 data: items
             });
         } catch (error) {
-            console.error('Error in getAllItems controller:', error);
-            res.status(500).json({
-                success: false,
-                message: 'Server error'
-            });
+            handleError(res, error, "getAllItems");
         }
     }
 
     // Get item by ID
     static async getItemById(req, res) {
         try {
-            let ids = req.query.id;
-            if (typeof ids === 'string') {
-                ids = [parseInt(ids)];
-            } else {
-                ids = ids.map(id => parseInt(id));
-            
-                if (ids.includes(NaN)) {
-                    return res.status(400).json({
-                        success: false,
-                        message: 'Invalid characters in URL'
-                    });
-                }
-            }
 
-            const items = await queryDB('SELECT * FROM items WHERE id = ANY($1::int[])', [ids]);
+            const id = parseInt(req.query.id);
+            const items = await db.queryDB(item.getItemByIdQuery, [id]);
 
             if (items.length === 0) {
                 return res.status(404).json({
                     success: false,
-                    message: `Item(s) with id(s) ${ids} not found`
+                    message: `Item with id ${id} not found`
                 });
             }
       
@@ -67,11 +47,7 @@ class itemController {
                 data: items
             });
         } catch (error) {
-            console.error('Error in getItemById controller:', error);
-            res.status(500).json({
-                success: false,
-                message: 'Server error'
-            });
+            handleError(res, error, "getItemById");
         }
     }
 
@@ -80,17 +56,10 @@ class itemController {
         try {
             const { title, subtitle, content, tags } = req.body;
             const vettedDate = req.body.vettedDate || new Date();
-            const uniqueTags = [...new Set(tags)];
+            const uniqueTags = [...new Set(tags)]; 
 
-            if (!title || !subtitle || !content || !tags) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'Missing required fields: title, subtitle, content, or tags'
-                });
-            }
-
-            const newItem = await queryDB(
-                'INSERT INTO items (title, subtitle, vetted_date, content, tags) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            const newItem = await db.queryDB(
+                item.createItemQuery,
                 [title, subtitle, vettedDate, content, uniqueTags]
             );
 
@@ -99,11 +68,7 @@ class itemController {
                 data: newItem
             });
         } catch (error) {
-            console.error('Error in createItem controller:', error);
-            res.status(500).json({
-                success: false,
-                message: 'Server error'
-            });
+            handleError(res, error, "createItem");
         }
     }
 
@@ -113,23 +78,9 @@ class itemController {
             const { title, subtitle, content, tags } = req.body;
             const vettedDate = req.body.vettedDate || new Date();
             const uniqueTags = [...new Set(tags)];
-            let id = req.query.id;
-            if (Array.isArray(id)) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'One id please'
-                });
-            } else {
-                id = parseInt(id);
-                if (id === NaN) {
-                    return res.status(400).json({
-                        success: false,
-                        message: 'Invalid Characters In Url'
-                    });       
-                }
-            }
+            let id = parseInt(req.query.id); 
 
-            let updateItem = await queryDB('SELECT * FROM items WHERE id = $1', [id]);
+            let updateItem = await db.queryDB(item.getItemByIdQuery, [id]);
 
             updateItem.title = title ? title : updateItem.title;
             updateItem.subtitle = subtitle ? subtitle : updateItem.subtitle;
@@ -137,8 +88,8 @@ class itemController {
             updateItem.content = content ? content : updateItem.content;
             updateItem.tags = uniqueTags ? uniqueTags : updateItem.tags;
 
-            const update = await queryDB(
-                'UPDATE items SET title = $1, subtitle = $2, vetted_date = $3, content = $4, tags = $5 WHERE id = $6 RETURNING *',
+            const update = await db.queryDB(
+                item.updateItemByIdQuery,
                 [updateItem.title, updateItem.subtitle, updateItem.vettedDate, updateItem.content, updateItem.tags, id]
             );
 
@@ -154,35 +105,17 @@ class itemController {
                 data: update
             });
         } catch (error) {
-            console.error('Error in updateItemById:', error);
-            res.status(500).json({
-                success: false,
-                message: 'Server error'
-            });
+            handleError(res, error, "updateItemById");
         }
     }
 
     // Delete item by id
     static async deleteItemById(req, res) {
         try {
-            let id = req.query.id;
-            if (Array.isArray(id)) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'One id please'
-                });
-            } else {
-                id = parseInt(id);
-                if (id === NaN) {
-                    return res.status(400).json({
-                        success: false,
-                        message: 'Invalid Characters In Url'
-                    });       
-                }
-            }
+            const id = parseInt(req.query.id);
 
-            const del = await queryDB(
-                'DELETE FROM items WHERE id = $1 RETURNING *',
+            const del = await db.queryDB(
+                item.deleteItemByIdQuery,
                 [id]  
             );
 
@@ -195,32 +128,21 @@ class itemController {
 
             res.status(204).send(); // No content to return
         } catch (error) {
-            console.error('Error in deleteItemById:', error);
-            res.status(500).json({
-                success: false,
-                message: 'Server error'
-            });
+            handleError(res, error, "deleteItemById");
         }
     }
 
     // Get items by tag
     static async getItemsByTags(req, res) {
         try {
+
             let tags = req.query.tags;
             if (typeof tags === 'string') {
                 tags = [tags];
             }
 
-            // Ensure tags are an array
-            if (!Array.isArray(tags) || tags.length === 0) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'At least one tag is required'
-                });
-            }
-
-            const items = await queryDB(
-                'SELECT * FROM items WHERE tags @> $1',
+            const items = await db.queryDB(
+                item.getItemsByTagsQuery,
                 [tags]
             );
 
@@ -235,12 +157,9 @@ class itemController {
                 success: true,
                 data: items
             });
+
         } catch (error) {
-            console.error('Error in getItemsByTags:', error);
-            res.status(500).json({
-                success: false,
-                message: 'Server error'
-            });
+            handleError(res,error, "getItemByTags");
         }
     }
 }

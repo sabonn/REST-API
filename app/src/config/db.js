@@ -14,6 +14,18 @@ pool.connect()
     .then(() => console.log('Connected to PostgreSQL database'))
     .catch(err => console.error('Database connection error:', err));
 
+
+const queryDB = async (query, params = []) => {
+    try {
+        const result = await pool.query(query, params);
+        return result.rows;
+    } catch (error) {
+        console.log('Error in query in data base: ', error);
+        throw error;
+    }
+}
+
 module.exports = {
-    query: (text, params) => pool.query(text, params),
+    queryDB
 };
+

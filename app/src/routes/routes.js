@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const itemController = require('../controllers/controller');
-const { validate, validateId, updateItemSchema, createItemSchema }  = require('../validation/validation');
+const { validate, validateTags, validateId, updateItemSchema, createItemSchema }  = require('../validation/validation');
 
 // Route definitions
 // Base Route
@@ -14,6 +14,6 @@ router.get('/id', validate(validateId,"query"), itemController.getItemById);
 router.delete('/id', validate(validateId,"query"), itemController.deleteItemById);
 
 // Tags Route
-router.get('/tags', itemController.getItemsByTags);
+router.get('/tags', validate(validateTags, "query"), itemController.getItemsByTags);
 
 module.exports = router;
